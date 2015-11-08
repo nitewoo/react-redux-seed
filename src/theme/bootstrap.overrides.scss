@@ -1,0 +1,11 @@
+/**
+ * Override Bootstrap styles that you can't modify via variables here.
+ *
+ */
+.navbar {
+  border-radius: 0;
+}
+.navbar-brand {
+  position: relative;
+  padding-right: 30px;
+}
