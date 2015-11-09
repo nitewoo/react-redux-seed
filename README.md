@@ -1,7 +1,5 @@
-# group-tools-vote
-
 ## development
-- node version >= v4.1.2
+- node `v4.2.2`
 - install
 
 ```

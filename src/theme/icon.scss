@@ -1,0 +1,11 @@
+$iconPath: '../../static/image/icon';
+
+.bell {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('#{$iconPath}/bell.png');
+  &:hover {
+    background: url('#{$iconPath}/bell-hover.png')
+  }
+}

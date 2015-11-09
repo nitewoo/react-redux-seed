@@ -17,17 +17,21 @@ class Counter extends Component {
 
     const {
       dispatch,
-      counter
+      counter,
     } = this.props
 
     function doIncrement () {
-      dispatch({type: 'INCREMENT_COUNTER'})
+      dispatch(increment())
     }
 
     return (
       <div className="container">
         <CounterBtn increment={doIncrement} />
         <CounterVal count={this.props.count} />
+        <h3 className={sc['sub-title']}>
+          <a className="bell"></a>
+          <span>right ?</span>
+        </h3>
       </div>
     )
   }

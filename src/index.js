@@ -28,12 +28,18 @@ import counter from './reducers/counter'
 
 const reducer = combineReducers({
   router: routerStateReducer,
-  counter: counter
+  counter: counter,
 })
+
+const initialState = {
+  counter: {
+    count: 3
+  }
+}
 
 const store = compose(
   reduxReactRouter({ createHistory })
-)(createStore)(reducer)
+)(createStore)(reducer, initialState)
 
   // console.log(app)
 ReactDOM.render(

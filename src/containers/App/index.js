@@ -20,10 +20,15 @@ import {
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
+// action creator
+// import { initCommon } from '../../reducers/common'
+
 class App extends Component {
   render() {
     const sc = this.style.locals
     const { dispatch } = this.props
+
+    console.log('app.props: ', this.props)
 
     const navItems = [
       { route: '/counter', text: 'Counter' },
@@ -62,8 +67,10 @@ class App extends Component {
   }
 
   componentWillMount() {
+    const { dispatch } = this.props
     // load moule style
     this.style = require('./style.scss').ref()
+    // dispatch(initCommon())
   }
 
   componentWillUnmount() {

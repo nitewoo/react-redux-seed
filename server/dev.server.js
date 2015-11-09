@@ -16,7 +16,7 @@ const webpadkDevServer = new WebpackDevServer(webpack(webDevServerConfig), {
     contentBase: __dirname,
     hot: true,
     quiet: false,
-    noInfo: false,
+    noInfo: true,
     publicPath: "/assets/",
     stats: { colors: true }
 });
