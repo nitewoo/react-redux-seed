@@ -83,7 +83,11 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    webpackIsomorphicToolsPlugin
+    webpackIsomorphicToolsPlugin,
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true
+    }),
   ],
   externals: {
     //don't bundle the 'react' npm package with our bundle.js

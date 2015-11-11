@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createHistory } from 'history'
 import { Route, IndexRoute } from 'react-router'
+// Redux DevTools store enhancers
+import { devTools, persistState } from 'redux-devtools'
+// React components for Redux DevTools
+import { DevTools, DebugPanel } from 'redux-devtools/lib/react'
+import DiffMonitor from 'redux-devtools-diff-monitor'
 import {
   createStore,
   compose,
@@ -38,20 +43,24 @@ const initialState = {
 }
 
 const store = compose(
-  reduxReactRouter({ createHistory })
+  reduxReactRouter({ createHistory }),
+  devTools()
 )(createStore)(reducer, initialState)
 
   // console.log(app)
 ReactDOM.render(
-  <Provider store={store}>
-    <ReduxRouter>
-      <Route path="/" component={App}>
-        <IndexRoute component={Home}/>
-        <Route path="counter" component={Counter}/>
-        <Route path="about" component={About}/>
-      </Route>
-    </ReduxRouter>
-  </Provider>,
+  <div>
+    <Provider store={store}>
+      <ReduxRouter>
+        <Route path="/" component={App}>
+          <IndexRoute component={Home}/>
+          <Route path="counter" component={Counter}/>
+          <Route path="about" component={About}/>
+        </Route>
+      </ReduxRouter>
+    </Provider>
+    <DevTools store={store} monitor={DiffMonitor} shortcut='ctrl+d'/>
+  </div>,
 
   document.getElementById('appContent')
 )
