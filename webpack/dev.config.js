@@ -15,6 +15,7 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: {
     main: [
+      'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
       'bootstrap-sass!./src/theme/bootstrap.config.js',
       './src/index.js'
     ]
@@ -26,6 +27,7 @@ module.exports = {
     publicPath: 'http://' + host + ':' + port + '/assets/'
   },
   devServer: {
+    host: host,
     port: port,
     contentBase: "./static",
     historyApiFallback: true
@@ -34,7 +36,11 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: "babel-loader"
+      loaders: [
+        'react-hot',
+        'babel-loader'
+      ]
+      // loader: "babel-loader"
     }, {
       test: /\.css$/,
       loaders: [
@@ -76,6 +82,7 @@ module.exports = {
     extensions: ['', '.json', '.js']
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     webpackIsomorphicToolsPlugin
   ],
   externals: {

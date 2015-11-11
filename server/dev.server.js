@@ -12,14 +12,15 @@ import url from 'url'
 
 // ------ webpack-dev-server ------------------
 const webpackDevServerPort = webDevServerConfig.devServer.port
-const webpadkDevServer = new WebpackDevServer(webpack(webDevServerConfig), {
-    contentBase: __dirname,
-    hot: true,
-    quiet: false,
-    noInfo: true,
-    publicPath: "/assets/",
-    stats: { colors: true }
-});
+// const webpadkDevServer = new WebpackDevServer(webpack(webDevServerConfig), {
+//     contentBase: __dirname,
+//     hot: true,
+//     quiet: false,
+//     noInfo: true,
+//     publicPath: "/assets/",
+//     stats: { colors: true }
+// });
+
 
 // -------- dev-server ----------------------
 const app = express();
@@ -43,8 +44,8 @@ app.get('/*', function(req, res) {
 });
 
 // -------- run ----------------------
-webpadkDevServer.listen(7071, "localhost", function() {})
-console.info('webpack-dev-server http://localhost:' + webpackDevServerPort + ' is on');
+// webpadkDevServer.listen(7071, "localhost", function() {})
+// console.info('webpack-dev-server http://localhost:' + webpackDevServerPort + ' is on');
 
 app.listen(7070);
 console.info('dev-server http://' + devServerHost + ':' + devServerPort + ' is on');
