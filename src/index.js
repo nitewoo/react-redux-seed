@@ -6,7 +6,7 @@ import { Route, IndexRoute } from 'react-router'
 // Redux DevTools store enhancers
 import { devTools, persistState } from 'redux-devtools'
 // React components for Redux DevTools
-import { DevTools, DebugPanel } from 'redux-devtools/lib/react'
+import { DevTools } from 'redux-devtools/lib/react'
 import DiffMonitor from 'redux-devtools-diff-monitor'
 import {
   createStore,

@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import WebpackDevServer from 'webpack-dev-server'
+// import WebpackDevServer from 'webpack-dev-server'
 import webDevServerConfig from '../webpack/dev.config'
 
 import express from 'express'
