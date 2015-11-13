@@ -12,6 +12,7 @@ var host = 'localhost';
 var port = parseInt(process.env.PORT) + 1 || 7071;
 
 module.exports = {
+  devtool: 'eval-source-map',
   context: path.resolve(__dirname, '..'),
   entry: {
     main: [
@@ -87,7 +88,7 @@ module.exports = {
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
     }),
-    webpackIsomorphicToolsPlugin
+    webpackIsomorphicToolsPlugin.development()
   ],
   externals: {
     //don't bundle the 'react' npm package with our bundle.js
