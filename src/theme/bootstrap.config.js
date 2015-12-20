@@ -11,8 +11,15 @@
  */
 
 module.exports = {
-  preBootstrapCustomizations: './src/theme/variables.scss',
-  mainSass: './src/theme/main.scss',
+  // Use preBootstrapCustomizations to change $brand-primary. Ensure this
+  // preBootstrapCustomizations does not depend on other bootstrap variables.
+  preBootstrapCustomizations: './src/theme/_bootstrap.customizations.scss',
+
+  // Use bootstrapCustomizations to utilize other sass variables defined in
+  // preBootstrapCustomizations or the _variables.scss file. This is useful to set one
+  // customization value based on another value.
+  bootstrapCustomizations: './src/theme/_variables.scss',
+  mainSass: './src/theme/_main.scss',
   verbose: false,
   debug: false,
   scripts: {
