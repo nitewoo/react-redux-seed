@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var relativeAssetsPath = '../static/assets';
 var assetsPath = path.join(__dirname, relativeAssetsPath);
 
+var CleanPlugin = require('clean-webpack-plugin');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./isomorphic-tools.config'));
 
@@ -70,6 +71,31 @@ module.exports = {
     extensions: ['', '.json', '.js']
   },
   plugins: [
+    new CleanPlugin([relativeAssetsPath]),
+
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: false,
+      __DEVTOOLS__: false
+    }),
+    // ignore dev config
+    new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
+    // set global vars
+    new webpack.DefinePlugin({
+      'process.env': {
+        // Useful to reduce the size of client-side libraries, e.g. react
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+
+    // optimizations
+    // new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //       warnings: false
+    //     }
+    // }),
+
     webpackIsomorphicToolsPlugin
   ],
   externals: {

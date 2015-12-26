@@ -88,6 +88,7 @@ module.exports = {
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
     }),
+    new webpack.IgnorePlugin(/webpack-stats\.json$/),
     webpackIsomorphicToolsPlugin.development()
   ],
   externals: {
