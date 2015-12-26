@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createHistory } from 'history'
 import { Route, IndexRoute } from 'react-router'
-// Redux DevTools store enhancers
-import { devTools, persistState } from 'redux-devtools'
-// React components for Redux DevTools
-import { DevTools } from 'redux-devtools/lib/react'
-import DiffMonitor from 'redux-devtools-diff-monitor'
+
 import {
   createStore,
   compose,
@@ -16,7 +12,7 @@ import {
 
 import {
   ReduxRouter,
-  routerStateReducer,
+  // routerStateReducer,
   reduxReactRouter
 } from 'redux-router'
 
@@ -26,40 +22,40 @@ import {
   Home,
   Counter,
   About
+  // DevTools
 } from './containers/index'
+import DevTools from './containers/DevTools';
 
 // reducers
-import counter from './reducers/counter'
-
-const reducer = combineReducers({
-  router: routerStateReducer,
-  counter: counter,
-})
-
-const initialState = {
-  counter: {
-    count: 3
-  }
-}
+import rootReducer from './reducers';
 
 const store = compose(
   reduxReactRouter({ createHistory }),
-  devTools()
-)(createStore)(reducer, initialState)
+  DevTools.instrument(),
+)(createStore)(rootReducer)
+
+// Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
+if (module.hot) {
+  module.hot.accept('./reducers', () =>
+    store.replaceReducer(require('./reducers')/*.default if you use Babel 6+ */)
+  )
+}
 
   // console.log(app)
 ReactDOM.render(
   <div>
     <Provider store={store}>
-      <ReduxRouter>
-        <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
-          <Route path="counter" component={Counter}/>
-          <Route path="about" component={About}/>
-        </Route>
-      </ReduxRouter>
+      <div>
+        <ReduxRouter>
+          <Route path="/" component={App}>
+            <IndexRoute component={Home}/>
+            <Route path="counter" component={Counter}/>
+            <Route path="about" component={About}/>
+          </Route>
+        </ReduxRouter>
+        <DevTools />
+      </div>
     </Provider>
-    <DevTools store={store} monitor={DiffMonitor} shortcut='ctrl+d'/>
   </div>,
 
   document.getElementById('appContent')

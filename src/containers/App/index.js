@@ -7,7 +7,7 @@ import {
 
 import {
   Navbar,
-  NavBrand,
+  NavbarBrand,
   Nav,
   NavItem,
   NavDropdown,
@@ -55,7 +55,7 @@ class App extends Component {
     return (
       <div>
         <Navbar inverse>
-          <NavBrand><a onClick={_goHome}>React-Redux-Seed</a></NavBrand>
+          <NavbarBrand><a onClick={_goHome}>React-Redux-Seed</a></NavbarBrand>
           <Nav>
             <NavItem eventKey={{route: '/counter'}} active={pathname === '/counter'} onSelect={_onNavItemSelect}>Counter</NavItem>
             <NavItem eventKey={{route: '/about' }} active={pathname === '/about'} onSelect={_onNavItemSelect}>About</NavItem>
