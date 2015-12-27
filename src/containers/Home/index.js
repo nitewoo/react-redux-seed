@@ -17,11 +17,10 @@ class Home extends Component {
     } = this.props
 
     return (
-      <div>
+      <div className={sc.joker}>
         <div className="container">
           <h1 className={sc.title}>Hello, stranger</h1>
         </div>
-        <div className={sc.joker}></div>
       </div>
     )
   }
