@@ -5,11 +5,9 @@ var webpackConfig = require('./dev.config');
 var compiler = webpack(webpackConfig);
 
 var host = 'localhost';
-// var port = parseInt(process.env.PORT) + 1 || 7071;
 var port = webpackConfig.devServer.port;
 
 var serverOptions = {
-  contentBase: 'http://' + host + ':' + port,
   quiet: true,
   noInfo: true,
   hot: true,

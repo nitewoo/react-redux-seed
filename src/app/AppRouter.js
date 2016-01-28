@@ -5,8 +5,10 @@ import { ReduxRouter } from 'redux-router'
 // view containers
 import App from './App'
 import Home from './Home'
-import Counter from './Counter'
 import About from './About'
+import Counter from './Counter'
+
+
 
 export default class AppRouter extends Component {
   render() {
@@ -16,6 +18,7 @@ export default class AppRouter extends Component {
           <IndexRoute component={Home}/>
           <Route path="counter" component={Counter}/>
           <Route path="about" component={About}/>
+          <Route path="*" component={Home}/>
         </Route>
       </ReduxRouter>
     )

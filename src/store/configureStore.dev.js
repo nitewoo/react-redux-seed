@@ -1,11 +1,14 @@
-import { createStore, compose } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 import { reduxReactRouter } from 'redux-router'
+import thunk from 'redux-thunk'
 import { createHistory } from 'history'
-// import { persistState } from 'redux-devtools'
 import rootReducer from '../reducers'
-import DevTools from '../containers/DevTools'
+import DevTools from '../app/DevTools'
+
+const middleware = [thunk]
 
 const finalCreateStore = compose(
+  applyMiddleware(...middleware),
   reduxReactRouter({ createHistory }),
   DevTools.instrument()
 )(createStore)

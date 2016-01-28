@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-// import {bindActionCreators} from 'redux';
-
-// components
-// import CounterBtn from '../../components/CounterBtn'
-// import CounterVal from '../../components/CounterVal'
-
-// action creator
-// import { increment } from '../../reducers/counter'
+// import {bindActionCreators} from 'redux'
 
 class About extends Component {
 
-  // const self = this;
-  // self.style = require('./style.scss');
   render() {
     const sc = this.style.locals
     const joker = require('./joker.jpg')
@@ -37,8 +28,6 @@ class About extends Component {
     this.style.unref()
   }
 }
-About.style = require('./style.scss');
-// export default Home
 
 function mapStateToProps(state) {
   return {
@@ -49,7 +38,7 @@ function mapStateToProps(state) {
 // function mapDispatchToProps(dispatch) {
 //   return {
 //     someAction: bindActionCreators(actionCreator, dispatch)
-//   };
+//   }
 // }
 
 export default connect(mapStateToProps)(About)
