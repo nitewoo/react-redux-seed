@@ -9,6 +9,7 @@ import serveStatic from 'serve-static'
 import path from 'path'
 import url from 'url'
 import httpProxy from 'http-proxy'
+import cors from 'cors'
 
 import serverConfig from './config'
 
@@ -35,7 +36,7 @@ app.use('/assets', proxy(url.parse('http://' + host + ':' + webpackDevServerPort
 app.use(serveStatic(staticPath))
 
 // Proxy to API server
-app.use('/api', (req, res) => {
+app.use('/api', cors(), (req, res) => {
   apiProxy.web(req, res)
 })
 
