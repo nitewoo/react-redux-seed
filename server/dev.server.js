@@ -8,7 +8,6 @@ import servefavicon from 'serve-favicon'
 import serveStatic from 'serve-static'
 import path from 'path'
 import url from 'url'
-import httpProxy from 'http-proxy'
 import cors from 'cors'
 
 import serverConfig from './config'
@@ -18,10 +17,6 @@ const { host, apiPort, devPort, webpackDevServerPort } = serverConfig
 
 // -------- dev-server ----------------------
 const app = express()
-const apiProxy = httpProxy.createProxyServer({
-  target: 'http://' + host + ':' + apiPort
-})
-
 
 const staticPath = path.resolve(path.join(__dirname, '..', 'static'))
 const faviconPath = path.join(staticPath, 'favicon.ico')
@@ -30,15 +25,13 @@ const indexPath = path.join(staticPath, 'index.html')
 app.use(compression())
 app.use(servefavicon(faviconPath))
 
-// proxy the request for static assets
+// proxy the request for static assets to WebpackDevServer
 app.use('/assets', proxy(url.parse('http://' + host + ':' + webpackDevServerPort + '/assets')))
 
 app.use(serveStatic(staticPath))
 
-// Proxy to API server
-app.use('/api', cors(), (req, res) => {
-  apiProxy.web(req, res)
-})
+// proxy to API server
+app.use('/api', cros(), proxy(url.parse('http://' + host + ':' + apiPort)))
 
 app.get('/*', function(req, res) {
   res.sendFile(indexPath)
