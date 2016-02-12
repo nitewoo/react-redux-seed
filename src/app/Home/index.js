@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // components
 
 // action creator
-
+import { homeActions } from './reducer'
 
 class Home extends Component {
 
@@ -28,6 +28,7 @@ class Home extends Component {
   componentWillMount() {
     // load module style
     this.style = require('./style.scss').ref()
+    this.props.dispatch(homeActions.fetchApiServerInfo())
   }
 
   componentWillUnmount() {

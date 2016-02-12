@@ -60,6 +60,12 @@ module.exports = {
       'src',
       'node_modules'
     ],
+    alias: {
+      // resolve the issue:
+      // Cannot resolve module 'ie' in node_modules/superagent-no-cache
+      // https://github.com/johntron/superagent-no-cache/issues/11
+      'ie': 'component-ie'
+    },
     extensions: ['', '.json', '.js']
   },
   externals: {

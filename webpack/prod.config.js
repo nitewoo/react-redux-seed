@@ -8,8 +8,11 @@ var CleanPlugin = require('clean-webpack-plugin')
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./isomorphic-tools.config'))
 
-var host = 'localhost'
-var port = 6060
+var serverConfig = require('../server/config')
+
+var host = serverConfig.host
+var port = serverConfig.prodPort
+
 var basicConfig = require('./basic.config')
 
 var config = Object.assign({}, basicConfig, {

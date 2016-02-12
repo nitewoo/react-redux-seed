@@ -8,8 +8,11 @@ var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./isomorphic-tools.config'))
 
 
-var host = 'localhost'
-var port = parseInt(process.env.PORT) + 1 || 7071
+var serverConfig = require('../server/config')
+
+var host = serverConfig.host
+var port = serverConfig.webpackDevServerPort
+
 var basicConfig = require('./basic.config')
 
 var config = Object.assign({}, basicConfig, {
@@ -29,7 +32,7 @@ var config = Object.assign({}, basicConfig, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + port),
+      __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + serverConfig.devPort),
       __PRODUCTION__: false,
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true
