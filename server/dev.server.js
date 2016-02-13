@@ -31,7 +31,7 @@ app.use('/assets', proxy(url.parse('http://' + host + ':' + webpackDevServerPort
 app.use(serveStatic(staticPath))
 
 // proxy to API server
-app.use('/api', cros(), proxy(url.parse('http://' + host + ':' + apiPort)))
+app.use('/api', cors(), proxy(url.parse('http://' + host + ':' + apiPort)))
 
 app.get('/*', function(req, res) {
   res.sendFile(indexPath)
