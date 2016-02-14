@@ -1,6 +1,6 @@
 import request from 'superagent-bluebird-promise'
 import SuperagentMock from 'superagent-mock'
-
+import chai from 'chai'
 // require all modules ending in ".spec.js" from the
 // './src' directory and all subdirectories
 const contextSpec = require.context('./src', true, /\.spec\.js$/)
@@ -25,3 +25,7 @@ after(() => {
     superagentMock.unset()
   }
 })
+
+// disable truncating so that
+// all actual and expected values in assertion errors can be shown
+chai.config.truncateThreshold = 0

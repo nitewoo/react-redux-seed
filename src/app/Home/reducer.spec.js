@@ -25,3 +25,28 @@ describe('home reducer', () => {
     store.dispatch(homeActions.fetchApiServerInfo())
   })
 })
+
+// try diff output
+// describe('nice output', function(){
+//   it('should fail this test with a nice output when objects are not equal', function(){
+//     var objectA = {
+//       a: 'some string',
+//       b: 9,
+//       c: 20,
+//       d: 100,
+//     },
+//     objectB = {
+//       a: 'some other string',
+//       b: 10,
+//       g: '100',
+//     };
+
+//     expect(objectA).to.eql(objectB);
+//   });
+//   it('should fail this test with a nice output when arrays are not equal', function(){
+//     var arrayA = ['a', 6, 10, 9, 20, '15', 20, 30, 45, 60],
+//       arrayB = ['c', 2, '8', '15', 8, 30, '8', 5, 10, 'a', 8, '60'];
+
+//     expect(arrayA).to.eql(arrayB);
+//   });
+// })

@@ -17,7 +17,8 @@ var karmaConfig = {
   ],
 
   preprocessors: {
-    'tests-index.js': [ 'webpack', 'sourcemap', 'coverage' ]
+    // 'tests-index.js': [ 'webpack', 'sourcemap', 'coverage' ]
+    'tests-index.js': [ 'webpack', 'coverage' ]
   },
 
   reporters: [ 'mocha' , 'coverage' ],
