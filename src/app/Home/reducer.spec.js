@@ -24,6 +24,39 @@ describe('home reducer', () => {
     const store = mockStore({}, expectedActions, done)
     store.dispatch(homeActions.fetchApiServerInfo())
   })
+
+  it('should tell info', (done) => {
+    const location = 'beihai'
+
+    const expectedActions = [
+      { type: 'request_tell_info', location },
+      { type: 'receive_tell_info',  respJson: { message: 'Your current location is beihai' } }
+    ]
+    const store = mockStore({}, expectedActions, done)
+    store.dispatch(homeActions.tellInfo(location))
+  })
+
+  it('should greet to user', (done) => {
+    const userName = 'wujun'
+
+    const expectedActions = [
+      { type: 'request_greeting', userName },
+      { type: 'receive_greeting',  respJson: { message: 'Hello ' + userName } }
+    ]
+    const store = mockStore({}, expectedActions, done)
+    store.dispatch(homeActions.greet(userName))
+  })
+
+  it('should greet to stranger', (done) => {
+    const userName = ''
+    const expectedActions = [
+      { type: 'request_greeting', userName },
+      { type: 'receive_greeting',  respJson: { message: 'Hello stranger' } }
+    ]
+    const store = mockStore({}, expectedActions, done)
+    store.dispatch(homeActions.greet(userName))
+  })
+  
 })
 
 // try diff output

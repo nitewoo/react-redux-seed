@@ -36,7 +36,7 @@ app.get('/*', function(req, res) {
 
 app.listen(prodPort, err => {
   if (err) {
-    console.error(err);
+    console.error(err)
   }
-  console.info('prod-server http://' + host + ':' + prodPort + ' is on')
+  console.info('----\n==> 🎛  prod-server http://' + host + ':' + prodPort + ' is on')
 })

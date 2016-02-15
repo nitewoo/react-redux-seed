@@ -55,6 +55,7 @@ var karmaConfig = {
         __SERVER_ADDRESS__: JSON.stringify('http://' + serverConfig.host + ':' + serverConfig.devPort),
         __TESTING__: true,
         __DEVELOPMENT__: true,
+        __PRODUCTION__: false,
         __DEVTOOLS__: false  // disable redux-devtools
       })
     ]
