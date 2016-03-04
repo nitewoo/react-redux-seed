@@ -20,6 +20,7 @@ var config = Object.assign({}, basicConfig, {
   output: {
     path: assetsPath,
     filename: 'bundle.js', //this is the default name, so you can skip it
+    chunkFilename: '[chunkhash].chunk.js',
     //at this directory our bundle file will be available
     publicPath: 'http://' + host + ':' + port + '/assets/'
   },
