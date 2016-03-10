@@ -1,5 +1,6 @@
 import { injectAsyncReducer } from 'store/configureStore'
 import About from 'app/About'
+import NotFound from 'app/NotFound'
 
 export const createRoutes = function (store) {
   return [
@@ -21,6 +22,9 @@ export const createRoutes = function (store) {
     }, {
       path: 'about',
       component: About
+    }, {
+      path: '*',
+      component: NotFound
     }
   ]
 }

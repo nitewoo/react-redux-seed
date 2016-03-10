@@ -1,0 +1,14 @@
+:local {
+  .error404 {
+    margin-top: -20px;
+    width: 100%;
+    height: 945px;
+    background: url('./error404.png') no-repeat center center;
+  }
+}
+
+:global {
+  body {
+    background: #000
+  }
+}
