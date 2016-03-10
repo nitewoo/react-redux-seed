@@ -30,9 +30,7 @@ class About extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    count: state.counter.count
-  }
+  return {}
 }
 
 // function mapDispatchToProps(dispatch) {

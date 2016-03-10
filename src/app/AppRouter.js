@@ -5,22 +5,17 @@ import { ReduxRouter } from 'redux-router'
 // view containers
 import App from './App'
 import Home from './Home'
-import About from './About'
-import Counter from './Counter'
 
-
+import { createRoutes } from './routes'
 
 export default class AppRouter extends Component {
   render() {
-    return (
-      <ReduxRouter>
-        <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
-          <Route path="counter" component={Counter}/>
-          <Route path="about" component={About}/>
-          <Route path="*" component={Home}/>
-        </Route>
-      </ReduxRouter>
-    )
+    const appRoute = {
+      path: '/',
+      component: App,
+      indexRoute: { component: Home },
+      childRoutes: createRoutes(this.props.store)
+    }
+    return <ReduxRouter routes={appRoute} />
   }
 }

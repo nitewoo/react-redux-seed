@@ -9,7 +9,7 @@ import cors from 'cors'
 
 import serverConfig from './config'
 
-const { host, prodPort } = serverConfig
+const { host, prodPort, apiPort } = serverConfig
 
 const app = express()
 const apiProxy = httpProxy.createProxyServer({
