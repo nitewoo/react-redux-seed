@@ -28,12 +28,16 @@ const fetchApiServerInfo = () => (dispatch, getState) => {
 }
 
 const tellInfo = (location) => (dispatch, getState) => {
+  let url = 'http://localhost:7070/api/tellInfo'
+
   dispatch({
     type: request_tell_info,
     location
   })
-
-  return ajaxAgent('get', 'http://localhost:7070/api/tellInfo?location=' + location).then(
+  if (location) {
+    url = url + '?location=' + location
+  }
+  return ajaxAgent('get', url).then(
     respJson => {
       dispatch({
         type: receive_tell_info,

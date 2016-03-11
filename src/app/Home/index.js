@@ -26,12 +26,11 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    const location = 'beihai'
     // load module style
     this.style = require('./style.scss').ref()
     this.props.dispatch(homeActions.fetchApiServerInfo())
     this.props.dispatch(homeActions.tellInfo('beihai'))
-    this.props.dispatch(homeActions.greet())
+    this.props.dispatch(homeActions.greet('wujun'))
   }
 
   componentWillUnmount() {
