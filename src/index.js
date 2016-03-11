@@ -25,5 +25,5 @@ class Root extends Component {
 
 ReactDOM.render(
   <Root store={store} />,
-  document.getElementById('appContent')
+  document.getElementById('app')
 )
