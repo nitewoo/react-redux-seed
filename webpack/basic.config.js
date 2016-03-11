@@ -1,4 +1,6 @@
 var path = require('path')
+var webpack = require('webpack')
+
 var relativeAssetsPath = '../static/assets'
 var assetsPath = path.join(__dirname, relativeAssetsPath)
 
@@ -11,7 +13,25 @@ module.exports = {
     main: [
       'bootstrap-sass!./src/theme/bootstrap.config.js',
       './src/index.js'
+    ],
+    vendor: [
+      'immutable',
+      'history',
+      'react',
+      'react-bootstrap',
+      'react-dom',
+      'react-redux',
+      'redux',
+      'redux-router',
+      'redux-thunk',
+      'superagent-bluebird-promise',
+      'superagent-no-cache'
     ]
+  },
+  output: {
+    path: assetsPath,
+    filename: 'app.js',
+    chunkFilename: 'chunk.[name].[chunkhash].js'
   },
   module: {
     loaders: [{
@@ -68,6 +88,9 @@ module.exports = {
     },
     extensions: ['', '.json', '.js']
   },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.js")
+  ],
   externals: {
     //don't bundle the 'react' npm package with our bundle.js
     //but get it from a global 'React' variable

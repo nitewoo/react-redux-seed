@@ -14,36 +14,34 @@ var host = serverConfig.host
 var port = serverConfig.webpackDevServerPort
 
 var basicConfig = require('./basic.config')
-
 var config = Object.assign({}, basicConfig, {
   devtool: 'eval',
-  output: {
-    path: assetsPath,
-    filename: 'bundle.js', //this is the default name, so you can skip it
-    chunkFilename: '[chunkhash].chunk.js',
-    //at this directory our bundle file will be available
-    publicPath: 'http://' + host + ':' + port + '/assets/'
-  },
   devServer: {
     host: host,
     port: port,
     contentBase: "./static",
     historyApiFallback: true
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + serverConfig.devPort),
-      __PRODUCTION__: false,
-      __DEVELOPMENT__: true,
-      __DEVTOOLS__: true
-    }),
-    new webpack.IgnorePlugin(/webpack-stats\.json$/),
-    webpackIsomorphicToolsPlugin.development()
-  ]
+  }
 })
 
-config.entry.main.push('eventsource-polyfill')
-config.entry.main.push('webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr')
+// at this directory our bundle file will be available
+config.output.publicPath = 'http://' + host + ':' + port + '/assets/'
+
+config.entry.main = config.entry.main.concat([
+  'eventsource-polyfill',
+  'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr'
+])
+
+config.plugins = config.plugins.concat([
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.DefinePlugin({
+    __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + serverConfig.devPort),
+    __PRODUCTION__: false,
+    __DEVELOPMENT__: true,
+    __DEVTOOLS__: true
+  }),
+  new webpack.IgnorePlugin(/webpack-stats\.json$/),
+  webpackIsomorphicToolsPlugin.development()
+])
 
 module.exports = config

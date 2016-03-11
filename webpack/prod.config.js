@@ -14,38 +14,33 @@ var host = serverConfig.host
 var port = serverConfig.prodPort
 
 var basicConfig = require('./basic.config')
+var config = Object.assign({}, basicConfig)
 
-var config = Object.assign({}, basicConfig, {
-  output: {
-    path: assetsPath,
-    filename: 'bundle.js', //this is the default name, so you can skip it
-    chunkFilename: '[chunkhash].chunk.js',
-    // at this directory our bundle file will be available
-    publicPath: 'http://' + host + ':' + port + '/assets/'
-  },
-  plugins: [
-    new CleanPlugin([relativeAssetsPath]),
+// at this directory our bundle file will be available
+config.output.publicPath = 'http://' + host + ':' + port + '/assets/'
 
-    new webpack.DefinePlugin({
-      __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + port),
-      __PRODUCTION__: true,
-      __DEVELOPMENT__: false,
-      __DEVTOOLS__: false
-    }),
-    // ignore dev config
-    new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
+config.plugins = config.plugins.concat([
+  new CleanPlugin([relativeAssetsPath]),
 
-    // optimizations
-    // new webpack.optimize.DedupePlugin(),
-    // new webpack.optimize.OccurenceOrderPlugin(),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //       warnings: false
-    //     }
-    // }),
+  new webpack.DefinePlugin({
+    __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + port),
+    __PRODUCTION__: true,
+    __DEVELOPMENT__: false,
+    __DEVTOOLS__: false
+  }),
+  // ignore dev config
+  new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
 
-    webpackIsomorphicToolsPlugin
-  ]
-})
+  // optimizations
+  // new webpack.optimize.DedupePlugin(),
+  // new webpack.optimize.OccurenceOrderPlugin(),
+  // new webpack.optimize.UglifyJsPlugin({
+  //   compress: {
+  //       warnings: false
+  //     }
+  // }),
+
+  webpackIsomorphicToolsPlugin
+])
 
 module.exports = config
