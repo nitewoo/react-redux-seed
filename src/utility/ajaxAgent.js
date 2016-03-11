@@ -5,12 +5,19 @@ let defaultHeader = {
   Accept: 'application/json'
 }
 
-function agent(method, url, data, header = {}) {
+// function agent(method, url, data, header = {}) {
+function agent(method, url, options = {}) {
+  const { data, header } = options
+
+  const errorHandler = options.errorHandler || (error => {
+    console.log('error handled by errorHandler of ajaxAgent: ', error)
+  })
+
   return request(method, url)
-          .set(Object.assign(header, defaultHeader))
+          .set(Object.assign(defaultHeader, header))
           .use(nocache)
           .send(data)
-          .then(response => JSON.parse(response.text))
+          .then(response => JSON.parse(response.text), errorHandler)
 }
 
 export default agent

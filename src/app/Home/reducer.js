@@ -54,7 +54,12 @@ const greet = (userName) => (dispatch, getState) => {
   })
 
   return ajaxAgent('post', 'http://localhost:7070/api/greet', {
-    userName
+    data: {
+      userName
+    },
+    errorHandler: error => {
+      console.log('error handled by errorHandler of homeActionCreator.greet: ', error)
+    }
   }).then(
     respJson => {
       dispatch({
