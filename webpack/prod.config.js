@@ -4,7 +4,6 @@ var webpack = require('webpack')
 var relativeAssetsPath = '../static/assets'
 var assetsPath = path.join(__dirname, relativeAssetsPath)
 
-var CleanPlugin = require('clean-webpack-plugin')
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./isomorphic-tools.config'))
 
@@ -20,8 +19,6 @@ var config = Object.assign({}, basicConfig)
 config.output.publicPath = 'http://' + host + ':' + port + '/assets/'
 
 config.plugins = config.plugins.concat([
-  new CleanPlugin([relativeAssetsPath]),
-
   new webpack.DefinePlugin({
     __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + port),
     __PRODUCTION__: true,
