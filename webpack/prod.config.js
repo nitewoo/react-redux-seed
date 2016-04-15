@@ -23,19 +23,20 @@ config.plugins = config.plugins.concat([
     __SERVER_ADDRESS__: JSON.stringify('http://' + host + ':' + port),
     __PRODUCTION__: true,
     __DEVELOPMENT__: false,
-    __DEVTOOLS__: false
+    __DEVTOOLS__: false,
+    'process.env.NODE_ENV': JSON.stringify('production')
   }),
   // ignore dev config
   new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
 
   // optimizations
-  // new webpack.optimize.DedupePlugin(),
-  // new webpack.optimize.OccurenceOrderPlugin(),
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: {
-  //       warnings: false
-  //     }
-  // }),
+  new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        warnings: false
+      }
+  }),
 
   webpackIsomorphicToolsPlugin
 ])
